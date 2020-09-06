@@ -1,0 +1,3163 @@
+{
+  "openapi" : "3.0.0",
+  "servers" : [ {
+    "description" : "local 88",
+    "url" : "http://localhost:88/api/v1"
+  }, {
+    "description" : "Dev Sakok API",
+    "url" : "http://dev.sakok.com/api/v1"
+  }, {
+    "description" : "Sit Sakok API",
+    "url" : "http://sit.sakok.com/api/v1"
+  }, {
+    "description" : "prod Sakok API",
+    "url" : "http://sakok.com/api/v1"
+  }, {
+    "description" : "Sakok Local API",
+    "url" : "http://localhost:3000/api/v1"
+  }, {
+    "description" : "SwaggerHub API Auto Mocking",
+    "url" : "https://virtserver.swaggerhub.com/sajadweb/Sakok/1.0.0"
+  } ],
+  "info" : {
+    "description" : "This is a simple API",
+    "version" : "1.0.0",
+    "title" : "Sakok API",
+    "contact" : {
+      "email" : "sajadeb@your-company.com"
+    },
+    "license" : {
+      "name" : "Apache 2.0",
+      "url" : "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "tags" : [ {
+    "name" : "Auth",
+    "description" : "<b style=\"color:green\">stable</b>"
+  }, {
+    "name" : "Field",
+    "description" : "<b style=\"color:green\">stable</b>"
+  }, {
+    "name" : "Location",
+    "description" : "<b style=\"color:green\">stable</b>"
+  }, {
+    "name" : "Users",
+    "description" : "<b style=\"color:orange\">pending</b>"
+  }, {
+    "name" : "Contacts",
+    "description" : "<b style=\"color:orange\">pending</b>"
+  }, {
+    "name" : "Notes",
+    "description" : "<b style=\"color:orange\">pending</b>"
+  }, {
+    "name" : "Tasks",
+    "description" : "<b style=\"color:orange\">pending</b>"
+  }, {
+    "name" : "Transactions",
+    "description" : "<b style=\"color:orange\">pending</b>"
+  }, {
+    "name" : "Comments",
+    "description" : "<b style=\"color:orange\">pending</b>"
+  }, {
+    "name" : "Activities",
+    "description" : "<b style=\"color:orange\">pending</b>"
+  }, {
+    "name" : "Notifications",
+    "description" : "<b style=\"color:orange\">pending</b>"
+  }, {
+    "name" : "Uploads",
+    "description" : "<b style=\"color:orange\">pending</b>"
+  }, {
+    "name" : "Products",
+    "description" : "<b style=\"color:orange\">pending</b>"
+  } ],
+  "paths" : {
+    "/company/{companyId}/tasks" : {
+      "get" : {
+        "tags" : [ "Tasks" ],
+        "description" : "This Method Trying to Get All Tasks",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/companyIdParam"
+        }, {
+          "$ref" : "#/components/parameters/pageParam"
+        }, {
+          "$ref" : "#/components/parameters/stateParam"
+        }, {
+          "$ref" : "#/components/parameters/limitParam"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Ok",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "oneOf" : [ {
+                    "$ref" : "#/components/schemas/getTasksA"
+                  }, {
+                    "$ref" : "#/components/schemas/getTasksB"
+                  }, {
+                    "$ref" : "#/components/schemas/getTasksC"
+                  } ]
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "internal server error"
+          },
+          "502" : {
+            "description" : "bad gateway"
+          },
+          "401" : {
+            "description" : "unauthorized"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Tasks" ],
+        "description" : "This Method Trying to insert Task",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/companyIdParam"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "aplication/json" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "creator" : {
+                    "type" : "string"
+                  },
+                  "contacts" : {
+                    "type" : "string"
+                  },
+                  "owner" : {
+                    "type" : "string"
+                  },
+                  "about" : {
+                    "type" : "string"
+                  },
+                  "taskTitle" : {
+                    "type" : "string"
+                  },
+                  "description" : {
+                    "type" : "string"
+                  },
+                  "vip" : {
+                    "type" : "string"
+                  },
+                  "pin" : {
+                    "type" : "string"
+                  },
+                  "todoDate" : {
+                    "type" : "string"
+                  },
+                  "limitTime" : {
+                    "type" : "string"
+                  },
+                  "notice" : {
+                    "type" : "string"
+                  },
+                  "mentions" : {
+                    "type" : "string"
+                  },
+                  "hashtag" : {
+                    "type" : "string"
+                  },
+                  "accessLevel" : {
+                    "type" : "string"
+                  },
+                  "state" : {
+                    "type" : "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Ok",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "success" : {
+                      "type" : "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "internal server error"
+          },
+          "502" : {
+            "description" : "bad gateway"
+          },
+          "401" : {
+            "description" : "unauthorized"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Tasks" ],
+        "description" : "This Method Trying to Delete Task",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/companyIdParam"
+        }, {
+          "$ref" : "#/components/parameters/companyCardIdHeader"
+        }, {
+          "$ref" : "#/components/parameters/userHeader"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Ok",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "success" : {
+                      "type" : "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "internal server error"
+          },
+          "502" : {
+            "description" : "bad gateway"
+          }
+        }
+      },
+      "patch" : {
+        "tags" : [ "Tasks" ],
+        "description" : "This Method Trying to patch Task",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/companyIdParam"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "aplication/json" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "userId" : {
+                    "type" : "string"
+                  },
+                  "recovery" : {
+                    "type" : "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Ok",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/success"
+                }
+              }
+            }
+          },
+          "502" : {
+            "description" : "bad gateway"
+          },
+          "401" : {
+            "description" : "unauthorized"
+          }
+        }
+      }
+    },
+    "/company/{companyId}/task/{taskId}" : {
+      "get" : {
+        "tags" : [ "Tasks" ],
+        "description" : "This Method Trying to Get Tasks",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/companyIdParam"
+        }, {
+          "$ref" : "#/components/parameters/taskId"
+        }, {
+          "$ref" : "#/components/parameters/companyCardIdHeader"
+        }, {
+          "$ref" : "#/components/parameters/filters"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Ok",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getTask"
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "internal server error"
+          },
+          "502" : {
+            "description" : "bad gateway"
+          },
+          "401" : {
+            "description" : "unauthorized"
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "Tasks" ],
+        "description" : "This Method Trying to insert Task",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/companyIdParam"
+        }, {
+          "$ref" : "#/components/parameters/taskId"
+        }, {
+          "$ref" : "#/components/parameters/userHeader"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "aplication/json" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "contacts" : {
+                    "type" : "string"
+                  },
+                  "owner" : {
+                    "type" : "string"
+                  },
+                  "about" : {
+                    "type" : "string"
+                  },
+                  "taskTitle" : {
+                    "type" : "string"
+                  },
+                  "description" : {
+                    "type" : "string"
+                  },
+                  "vip" : {
+                    "type" : "string"
+                  },
+                  "pin" : {
+                    "type" : "string"
+                  },
+                  "todoDate" : {
+                    "type" : "string"
+                  },
+                  "limitTime" : {
+                    "type" : "string"
+                  },
+                  "deleteAttachments" : {
+                    "type" : "string"
+                  },
+                  "notice" : {
+                    "type" : "string"
+                  },
+                  "mentions" : {
+                    "type" : "string"
+                  },
+                  "hashtag" : {
+                    "type" : "string"
+                  },
+                  "accessLevel" : {
+                    "type" : "string"
+                  },
+                  "state" : {
+                    "type" : "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Ok",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/putTask"
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "internal server error"
+          },
+          "502" : {
+            "description" : "bad gateway"
+          },
+          "401" : {
+            "description" : "unauthorized"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Tasks" ],
+        "description" : "This Method Trying to Delete Task",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/companyIdParam"
+        }, {
+          "$ref" : "#/components/parameters/taskId"
+        }, {
+          "$ref" : "#/components/parameters/userId"
+        }, {
+          "$ref" : "#/components/parameters/userHeader"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Ok",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/success"
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "internal server error"
+          },
+          "502" : {
+            "description" : "bad gateway"
+          }
+        }
+      },
+      "patch" : {
+        "tags" : [ "Tasks" ],
+        "description" : "This Method Trying to patch Task",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/companyIdParam"
+        }, {
+          "$ref" : "#/components/parameters/taskId"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "aplication/json" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "userId" : {
+                    "type" : "string"
+                  },
+                  "pin" : {
+                    "type" : "string"
+                  },
+                  "vip" : {
+                    "type" : "string"
+                  },
+                  "seen" : {
+                    "type" : "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Ok",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/success"
+                }
+              }
+            }
+          },
+          "502" : {
+            "description" : "bad gateway"
+          },
+          "401" : {
+            "description" : "unauthorized"
+          }
+        }
+      }
+    },
+    "/company/{companyId}/task/{taskId}/action" : {
+      "post" : {
+        "tags" : [ "Tasks" ],
+        "description" : "This Method Trying to post actions",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/companyIdParam"
+        }, {
+          "$ref" : "#/components/parameters/taskId"
+        }, {
+          "$ref" : "#/components/parameters/userHeader"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "aplication/json" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "nextCheck" : {
+                    "type" : "string"
+                  },
+                  "reason" : {
+                    "type" : "string"
+                  },
+                  "description" : {
+                    "type" : "string"
+                  },
+                  "mentions" : {
+                    "type" : "string"
+                  },
+                  "fromState" : {
+                    "type" : "string"
+                  },
+                  "toState" : {
+                    "type" : "string"
+                  },
+                  "communicationWay" : {
+                    "type" : "string"
+                  },
+                  "feelStatus" : {
+                    "type" : "string"
+                  },
+                  "vip" : {
+                    "type" : "string"
+                  },
+                  "deleteAttachments" : {
+                    "type" : "string"
+                  },
+                  "pin" : {
+                    "type" : "string"
+                  },
+                  "userId" : {
+                    "type" : "string"
+                  },
+                  "hashtag" : {
+                    "type" : "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Ok",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/actionPost"
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "internal server error"
+          },
+          "502" : {
+            "description" : "bad gateway"
+          },
+          "401" : {
+            "description" : "unauthorized"
+          }
+        }
+      }
+    },
+    "/company/{companyId}/task/{taskId}/comment" : {
+      "post" : {
+        "tags" : [ "Tasks" ],
+        "description" : "This Method Trying to post actions",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/companyIdParam"
+        }, {
+          "$ref" : "#/components/parameters/taskId"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "aplication/json" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "creator" : {
+                    "type" : "string"
+                  },
+                  "message" : {
+                    "type" : "string"
+                  },
+                  "parent" : {
+                    "type" : "string"
+                  },
+                  "mentions" : {
+                    "type" : "string"
+                  },
+                  "hashtag" : {
+                    "type" : "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Ok",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/commentPost"
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "internal server error"
+          },
+          "502" : {
+            "description" : "bad gateway"
+          },
+          "401" : {
+            "description" : "unauthorized"
+          }
+        }
+      }
+    },
+    "/company/{companyId}/task/{taskId}/comment/{commentId}" : {
+      "put" : {
+        "tags" : [ "Tasks" ],
+        "description" : "This Method Trying to insert Task",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/companyIdParam"
+        }, {
+          "$ref" : "#/components/parameters/taskId"
+        }, {
+          "$ref" : "#/components/parameters/commentId"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "aplication/json" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "message" : {
+                    "type" : "string"
+                  },
+                  "mentions" : {
+                    "type" : "string"
+                  },
+                  "commentId" : {
+                    "type" : "string"
+                  },
+                  "deleteAttachments" : {
+                    "type" : "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses" : {
+          "500" : {
+            "description" : "internal server error"
+          },
+          "502" : {
+            "description" : "bad gateway"
+          },
+          "401" : {
+            "description" : "unauthorized"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Tasks" ],
+        "description" : "This Method Trying to Delete Task",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/companyIdParam"
+        }, {
+          "$ref" : "#/components/parameters/taskId"
+        }, {
+          "$ref" : "#/components/parameters/userId"
+        }, {
+          "$ref" : "#/components/parameters/commentId"
+        }, {
+          "$ref" : "#/components/parameters/userHeader"
+        }, {
+          "$ref" : "#/components/parameters/companyCardIdHeader"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "aplication/json" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "ids" : {
+                    "type" : "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Ok",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/success"
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "internal server error"
+          },
+          "502" : {
+            "description" : "bad gateway"
+          }
+        }
+      }
+    },
+    "/company/{companyId}/task/charts" : {
+      "get" : {
+        "tags" : [ "Tasks" ],
+        "description" : "This Method Trying to Get charts",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/companyIdParam"
+        }, {
+          "$ref" : "#/components/parameters/contact"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Ok",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getCharts"
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "internal server error"
+          },
+          "502" : {
+            "description" : "bad gateway"
+          },
+          "401" : {
+            "description" : "unauthorized"
+          }
+        }
+      }
+    },
+    "/company/{companyId}/products" : {
+      "get" : {
+        "tags" : [ "Products" ],
+        "description" : "Get Products",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/userHeader"
+        }, {
+          "$ref" : "#/components/parameters/companyIdParam"
+        }, {
+          "$ref" : "#/components/parameters/pageParam"
+        }, {
+          "$ref" : "#/components/parameters/parentParam"
+        }, {
+          "$ref" : "#/components/parameters/productListParam"
+        }, {
+          "$ref" : "#/components/parameters/reportParam"
+        }, {
+          "$ref" : "#/components/parameters/searchParam"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getProducts"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "bad request"
+          },
+          "403" : {
+            "description" : "invalid auth"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Products" ],
+        "description" : "Post Products",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/userHeader"
+        }, {
+          "$ref" : "#/components/parameters/companyIdParam"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "parent" : {
+                    "type" : "string"
+                  }
+                }
+              }
+            }
+          },
+          "description" : "product details"
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Response",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/success"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad Request"
+          },
+          "403" : {
+            "description" : "invalid auth"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Products" ],
+        "description" : "Delete Products",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/userHeader"
+        }, {
+          "$ref" : "#/components/parameters/companyIdParam"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "productIds" : {
+                    "type" : "array",
+                    "items" : {
+                      "type" : "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "description" : "product ids"
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Response",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/success"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad Request"
+          },
+          "403" : {
+            "description" : "invalid auth"
+          }
+        }
+      }
+    },
+    "/company/{companyId}/products/product/{productId}" : {
+      "put" : {
+        "tags" : [ "Products" ],
+        "description" : "Put Products",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/productId"
+        }, {
+          "$ref" : "#/components/parameters/companyIdParam"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "parent" : {
+                    "type" : "string"
+                  }
+                }
+              }
+            }
+          },
+          "description" : "product details"
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Response",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/success"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad Request"
+          },
+          "403" : {
+            "description" : "invalid auth"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Products" ],
+        "description" : "Delete Products",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/productId"
+        }, {
+          "$ref" : "#/components/parameters/companyIdParam"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Response",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/success"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad Request"
+          },
+          "403" : {
+            "description" : "invalid auth"
+          }
+        }
+      }
+    },
+    "/auth/token" : {
+      "post" : {
+        "tags" : [ "Auth" ],
+        "summary" : "generate and set new Token and Ref Token",
+        "operationId" : "authenticationRefresh",
+        "description" : "With This Route You can set new Token and Extend stay login",
+        "parameters" : [ {
+          "schema" : {
+            "type" : "string"
+          },
+          "in" : "header",
+          "name" : "authenticate"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "multipart/form-data" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : { }
+              }
+            }
+          },
+          "description" : ""
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Response",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ResToken"
+                }
+              }
+            }
+          },
+          "403" : {
+            "description" : "invalid auth"
+          }
+        }
+      }
+    },
+    "/auth/login" : {
+      "post" : {
+        "tags" : [ "Auth" ],
+        "summary" : "signin",
+        "operationId" : "authenticationLogin",
+        "description" : "signin",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ReqLogin"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Response",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ResLogin"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/register" : {
+      "post" : {
+        "tags" : [ "Auth" ],
+        "summary" : "signup",
+        "operationId" : "authSignup",
+        "description" : "signup",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ReqRegister"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Response",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ResRegister"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/logout" : {
+      "post" : {
+        "tags" : [ "Auth" ],
+        "summary" : "logout account",
+        "operationId" : "authLogout",
+        "description" : "logout account",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ReqLogout"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Response",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ReqVerify"
+                },
+                "examples" : {
+                  "example-1" : { }
+                }
+              }
+            }
+          }
+        },
+        "parameters" : [ {
+          "schema" : {
+            "type" : "string"
+          },
+          "in" : "header",
+          "name" : "authenticate",
+          "description" : "refresh token is here\n"
+        } ]
+      }
+    },
+    "/auth/verify" : {
+      "post" : {
+        "tags" : [ "Auth" ],
+        "summary" : "verify account",
+        "operationId" : "authVerify",
+        "description" : "verify account ",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ReqVerify"
+              }
+            },
+            "multipart/form-data" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : { }
+              }
+            },
+            "application/xml" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : { }
+              }
+            },
+            "text/html" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : { }
+              }
+            },
+            "text/plain" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : { }
+              }
+            }
+          },
+          "description" : "{\n    \"email\":\"nimadeve@hotmail.com\",\n    \"code\":\"336450\"\n}"
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      }
+    },
+    "/auth/otp" : {
+      "post" : {
+        "tags" : [ "Auth" ],
+        "summary" : "OTP",
+        "operationId" : "otpId",
+        "description" : "otp code",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ReqOtp"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      }
+    },
+    "/locations/location/" : {
+      "post" : {
+        "tags" : [ "Location" ],
+        "operationId" : "locationPost",
+        "description" : "country = null and state != null => city **** country = null state = null => country *** country != null and state = null => state ",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "name" : {
+                    "type" : "string",
+                    "required" : [ "value" ]
+                  },
+                  "type" : {
+                    "type" : "string",
+                    "required" : [ "value" ]
+                  },
+                  "country" : {
+                    "type" : "string"
+                  },
+                  "state" : {
+                    "type" : "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Response"
+          }
+        }
+      }
+    },
+    "/locations" : {
+      "get" : {
+        "tags" : [ "Location" ],
+        "operationId" : "locationGet",
+        "responses" : {
+          "200" : {
+            "description" : "Result is Country With Nested of States and cities"
+          }
+        }
+      }
+    },
+    "/company/{companyId}/fields" : {
+      "get" : {
+        "tags" : [ "Field" ],
+        "operationId" : "fieldsGet",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/companyIdParam"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Response",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getFields"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "bad request"
+          },
+          "403" : {
+            "description" : "invalid auth"
+          }
+        }
+      }
+    },
+    "/users/user/{objectId}/password" : {
+      "patch" : {
+        "tags" : [ "Users" ],
+        "operationId" : "userReset",
+        "description" : "Reset Password For User",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/objectIdParam"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "properties" : {
+                  "oldPassword" : {
+                    "type" : "string"
+                  },
+                  "password" : {
+                    "type" : "string"
+                  },
+                  "confirmPassword" : {
+                    "type" : "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Response"
+          },
+          "400" : {
+            "description" : "bad request"
+          },
+          "403" : {
+            "description" : "invalid auth"
+          }
+        }
+      }
+    },
+    "/contacts/" : {
+      "post" : {
+        "tags" : [ "Contacts" ],
+        "operationId" : "contactsPost",
+        "description" : "Register New Customer and Legal , LegalCustomer ( you can add Customer or Legal - LegalCustomer )",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "properties" : {
+                  "customer" : {
+                    "type" : "object",
+                    "properties" : {
+                      "customerId" : {
+                        "type" : "string",
+                        "description" : "on edit should be not null"
+                      },
+                      "type" : {
+                        "type" : "string"
+                      },
+                      "owner" : {
+                        "type" : "string"
+                      },
+                      "accessLevel" : {
+                        "type" : "object"
+                      },
+                      "customerCode" : {
+                        "type" : "string"
+                      },
+                      "nameTitle" : {
+                        "type" : "string"
+                      },
+                      "firstName" : {
+                        "type" : "string"
+                      },
+                      "lastName" : {
+                        "type" : "string"
+                      },
+                      "email" : {
+                        "type" : "string"
+                      },
+                      "telephones" : {
+                        "type" : "string"
+                      },
+                      "phones" : {
+                        "type" : "string"
+                      },
+                      "states" : {
+                        "type" : "string"
+                      },
+                      "address" : {
+                        "type" : "object"
+                      },
+                      "groups" : {
+                        "type" : "string"
+                      },
+                      "image" : {
+                        "type" : "string"
+                      }
+                    }
+                  },
+                  "legal" : {
+                    "type" : "object",
+                    "properties" : {
+                      "legalId" : {
+                        "type" : "string",
+                        "description" : "on edit should be not null"
+                      },
+                      "type" : {
+                        "type" : "string"
+                      },
+                      "owner" : {
+                        "type" : "string"
+                      },
+                      "accessLevel" : {
+                        "type" : "object"
+                      },
+                      "customerCode" : {
+                        "type" : "string"
+                      },
+                      "telephones" : {
+                        "type" : "string"
+                      },
+                      "cameFrom" : {
+                        "type" : "string"
+                      },
+                      "groups" : {
+                        "type" : "string"
+                      },
+                      "image" : {
+                        "type" : "string"
+                      }
+                    }
+                  },
+                  "legalCustomer" : {
+                    "type" : "object",
+                    "properties" : {
+                      "legalCustomerId" : {
+                        "type" : "string",
+                        "description" : "on edit should be not null"
+                      },
+                      "type" : {
+                        "type" : "string"
+                      },
+                      "customerPosition" : {
+                        "type" : "string"
+                      },
+                      "owner" : {
+                        "type" : "string"
+                      },
+                      "accessLevel" : {
+                        "type" : "object"
+                      },
+                      "customerCode" : {
+                        "type" : "string"
+                      },
+                      "internalPhone" : {
+                        "type" : "string"
+                      },
+                      "communicationDesire" : {
+                        "type" : "string"
+                      },
+                      "phones" : {
+                        "type" : "string"
+                      },
+                      "emails" : {
+                        "type" : "string"
+                      },
+                      "groups" : {
+                        "type" : "string"
+                      },
+                      "image" : {
+                        "type" : "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Response"
+          },
+          "400" : {
+            "description" : "bad request"
+          },
+          "403" : {
+            "description" : "invalid auth"
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "parameters" : {
+      "contact" : {
+        "name" : "contact",
+        "in" : "query",
+        "description" : "contact",
+        "required" : true,
+        "schema" : {
+          "type" : "string"
+        }
+      },
+      "commentId" : {
+        "name" : "commentId",
+        "in" : "path",
+        "description" : "id of comment",
+        "required" : true,
+        "schema" : {
+          "type" : "string"
+        }
+      },
+      "userId" : {
+        "name" : "userId",
+        "in" : "query",
+        "description" : "id of user",
+        "required" : true,
+        "schema" : {
+          "type" : "string"
+        }
+      },
+      "filters" : {
+        "name" : "filters",
+        "in" : "query",
+        "description" : "filters",
+        "required" : false,
+        "schema" : {
+          "type" : "string"
+        }
+      },
+      "taskId" : {
+        "name" : "taskId",
+        "in" : "path",
+        "description" : "id of tasks",
+        "required" : true,
+        "schema" : {
+          "type" : "string"
+        }
+      },
+      "productId" : {
+        "name" : "productId",
+        "in" : "path",
+        "description" : "id of products",
+        "required" : true,
+        "schema" : {
+          "type" : "string"
+        }
+      },
+      "userHeader" : {
+        "name" : "user",
+        "in" : "header",
+        "description" : "user header",
+        "required" : false,
+        "schema" : {
+          "type" : "string"
+        }
+      },
+      "parentParam" : {
+        "name" : "parent",
+        "in" : "query",
+        "description" : "parent",
+        "required" : false,
+        "schema" : {
+          "type" : "string"
+        }
+      },
+      "searchParam" : {
+        "name" : "search",
+        "in" : "query",
+        "description" : "search",
+        "required" : false,
+        "schema" : {
+          "type" : "string"
+        }
+      },
+      "reportParam" : {
+        "name" : "report",
+        "in" : "query",
+        "description" : "report",
+        "required" : false,
+        "schema" : {
+          "type" : "string"
+        }
+      },
+      "pageParam" : {
+        "name" : "page",
+        "in" : "query",
+        "description" : "page",
+        "required" : false,
+        "schema" : {
+          "type" : "string"
+        }
+      },
+      "stateParam" : {
+        "name" : "state",
+        "in" : "query",
+        "description" : "state",
+        "required" : false,
+        "schema" : {
+          "type" : "string"
+        }
+      },
+      "limitParam" : {
+        "name" : "limit",
+        "in" : "query",
+        "description" : "limit",
+        "required" : false,
+        "schema" : {
+          "type" : "string"
+        }
+      },
+      "productListParam" : {
+        "name" : "productList",
+        "in" : "query",
+        "description" : "product list",
+        "required" : false,
+        "schema" : {
+          "type" : "string"
+        }
+      },
+      "companyCardIdHeader" : {
+        "name" : "companyCardId",
+        "in" : "header",
+        "description" : "Id of company card",
+        "required" : true,
+        "schema" : {
+          "type" : "string"
+        }
+      },
+      "companyIdParam" : {
+        "name" : "companyId",
+        "in" : "path",
+        "description" : "company id",
+        "required" : true,
+        "schema" : {
+          "type" : "string"
+        }
+      },
+      "objectIdParam" : {
+        "name" : "objectId",
+        "in" : "path",
+        "description" : "Id of users",
+        "required" : true,
+        "schema" : {
+          "type" : "string"
+        }
+      }
+    },
+    "schemas" : {
+      "success" : {
+        "type" : "object",
+        "properties" : {
+          "success" : {
+            "type" : "boolean"
+          }
+        }
+      },
+      "getCharts" : {
+        "type" : "object",
+        "properties" : {
+          "items" : {
+            "type" : "object"
+          },
+          "success" : {
+            "type" : "boolean"
+          }
+        }
+      },
+      "commentPost" : {
+        "type" : "object",
+        "properties" : {
+          "message" : {
+            "type" : "string"
+          },
+          "item" : {
+            "type" : "object"
+          },
+          "success" : {
+            "type" : "boolean"
+          }
+        }
+      },
+      "actionPost" : {
+        "type" : "object",
+        "properties" : {
+          "message" : {
+            "type" : "string"
+          },
+          "item" : {
+            "type" : "object"
+          },
+          "success" : {
+            "type" : "boolean"
+          }
+        }
+      },
+      "putTask" : {
+        "type" : "object",
+        "properties" : {
+          "message" : {
+            "type" : "string"
+          },
+          "item" : {
+            "type" : "object"
+          },
+          "success" : {
+            "type" : "boolean"
+          }
+        }
+      },
+      "getTask" : {
+        "type" : "object",
+        "properties" : {
+          "items" : {
+            "type" : "object"
+          },
+          "reports" : {
+            "type" : "object",
+            "properties" : {
+              "tasks" : {
+                "type" : "integer"
+              },
+              "notes" : {
+                "type" : "integer"
+              }
+            }
+          },
+          "success" : {
+            "type" : "boolean"
+          }
+        }
+      },
+      "getTasksA" : {
+        "type" : "object",
+        "properties" : {
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          },
+          "success" : {
+            "type" : "boolean"
+          }
+        }
+      },
+      "getTasksB" : {
+        "type" : "object",
+        "properties" : {
+          "reports" : {
+            "type" : "object",
+            "properties" : {
+              "total" : {
+                "type" : "string"
+              },
+              "todo" : {
+                "type" : "string"
+              },
+              "doing" : {
+                "type" : "string"
+              },
+              "done" : {
+                "type" : "string"
+              },
+              "delayed" : {
+                "type" : "string"
+              },
+              "onTime" : {
+                "type" : "string"
+              }
+            }
+          },
+          "success" : {
+            "type" : "boolean"
+          }
+        }
+      },
+      "getTasksC" : {
+        "type" : "object",
+        "properties" : {
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "todo" : {
+                "type" : "string"
+              },
+              "doing" : {
+                "type" : "string"
+              },
+              "done" : {
+                "type" : "string"
+              }
+            }
+          },
+          "totalDocs" : {
+            "type" : "string"
+          },
+          "page" : {
+            "type" : "string"
+          },
+          "limit" : {
+            "type" : "string"
+          },
+          "reports" : {
+            "type" : "string"
+          },
+          "success" : {
+            "type" : "boolean"
+          }
+        }
+      },
+      "getProducts" : {
+        "type" : "object",
+        "properties" : {
+          "success" : {
+            "type" : "boolean"
+          },
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "type" : "object",
+              "properties" : {
+                "accessLevel" : {
+                  "type" : "object",
+                  "properties" : {
+                    "all" : {
+                      "type" : "boolean"
+                    },
+                    "users" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "string"
+                      }
+                    },
+                    "positions" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "string"
+                      }
+                    }
+                  }
+                },
+                "unitType" : {
+                  "type" : "string"
+                },
+                "currencyType" : {
+                  "type" : "string"
+                },
+                "purchasePrice" : {
+                  "type" : "integer"
+                },
+                "unitPrice" : {
+                  "type" : "integer"
+                },
+                "children" : {
+                  "type" : "array",
+                  "items" : {
+                    "type" : "string"
+                  }
+                },
+                "level" : {
+                  "type" : "integer"
+                },
+                "_id" : {
+                  "type" : "string"
+                },
+                "company" : {
+                  "type" : "string"
+                },
+                "productCode" : {
+                  "type" : "string"
+                },
+                "title" : {
+                  "type" : "string"
+                },
+                "createdAt" : {
+                  "type" : "string"
+                }
+              }
+            }
+          },
+          "reports" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        }
+      },
+      "getFields" : {
+        "type" : "object",
+        "properties" : {
+          "success" : {
+            "type" : "string"
+          },
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "type" : "object",
+              "properties" : {
+                "_id" : {
+                  "type" : "string"
+                },
+                "accessLevel" : {
+                  "type" : "object"
+                },
+                "showIn" : {
+                  "type" : "array",
+                  "items" : {
+                    "type" : "string"
+                  }
+                },
+                "section" : {
+                  "type" : "string"
+                },
+                "company" : {
+                  "type" : "string"
+                },
+                "type" : {
+                  "type" : "object"
+                },
+                "title" : {
+                  "type" : "string"
+                },
+                "name" : {
+                  "type" : "string"
+                },
+                "jobs" : {
+                  "type" : "array",
+                  "items" : {
+                    "type" : "object"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "ResToken" : {
+        "title" : "token",
+        "type" : "object",
+        "properties" : {
+          "success" : {
+            "type" : "boolean"
+          },
+          "token" : {
+            "type" : "string"
+          }
+        },
+        "example" : {
+          "success" : true,
+          "token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVkQXQiOjE1OTI2OTEzOTMwODMsInVzZXIiOiI1ZWVmMDk1MTFlNzljNzE3YjUzNDY5YWYiLCJ0dGwiOiIyIiwiaWF0IjoxNTkyNzIzNzkzfQ.RZtzm3vwGYskjYCNXB8WYPc8rY1TF3Isol6EowaWmuw"
+        }
+      },
+      "ReqToken" : {
+        "title" : "token",
+        "type" : "object",
+        "properties" : {
+          "refreshToken" : {
+            "type" : "string"
+          }
+        },
+        "example" : {
+          "refreshToken" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVkQXQiOjE1OTI3NzA1OTMwODMsInVzZXIiOiI1ZWVmMDk1MTFlNzljNzE3YjUzNDY5YWYiLCJ0dGwiOiIyNCIsImlhdCI6MTU5MjcyMzc5M30.n7-dDWqVqe680ktqKjTd07zt90Qck10mO_tt_Il5M2U"
+        }
+      },
+      "ResAuth" : {
+        "title" : "auth",
+        "type" : "object",
+        "properties" : {
+          "token" : {
+            "type" : "string"
+          },
+          "refresh" : {
+            "type" : "string"
+          }
+        }
+      },
+      "ResUser" : {
+        "title" : "user",
+        "type" : "object",
+        "properties" : {
+          "firstName" : {
+            "type" : "string"
+          },
+          "id" : {
+            "type" : "string"
+          },
+          "lastName" : {
+            "type" : "string"
+          },
+          "pic" : {
+            "type" : "string"
+          }
+        }
+      },
+      "ResLogin" : {
+        "title" : "user success",
+        "type" : "object",
+        "properties" : {
+          "success" : {
+            "type" : "boolean"
+          },
+          "user" : {
+            "$ref" : "#/components/schemas/ResUser"
+          },
+          "auth" : {
+            "$ref" : "#/components/schemas/ResAuth"
+          }
+        },
+        "example" : {
+          "success" : true,
+          "user" : {
+            "firstName" : "سجاد",
+            "id" : "5eef07cd16976323b811d297",
+            "lastName" : "محمدی نژاد",
+            "pic" : "http://uri.png"
+          },
+          "auth" : {
+            "token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVkQXQiOjE1OTI2OTEzOTMwODMsInVzZXIiOiI1ZWVmMDk1MTFlNzljNzE3YjUzNDY5YWYiLCJ0dGwiOiIyIiwiaWF0IjoxNTkyNzIzNzkzfQ.RZtzm3vwGYskjYCNXB8WYPc8rY1TF3Isol6EowaWmuw",
+            "refresh" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVkQXQiOjE1OTI3NzA1OTMwODMsInVzZXIiOiI1ZWVmMDk1MTFlNzljNzE3YjUzNDY5YWYiLCJ0dGwiOiIyNCIsImlhdCI6MTU5MjcyMzc5M30.n7-dDWqVqe680ktqKjTd07zt90Qck10mO_tt_Il5M2U"
+          }
+        }
+      },
+      "ReqLogin" : {
+        "title" : "request login",
+        "type" : "object",
+        "properties" : {
+          "email" : {
+            "type" : "string",
+            "format" : "string",
+            "example" : "nimadeve@gmail.com"
+          },
+          "password" : {
+            "type" : "string",
+            "format" : "string",
+            "example" : "123123"
+          }
+        }
+      },
+      "ReqRegister" : {
+        "title" : "request Signup",
+        "type" : "object",
+        "properties" : {
+          "companyIndustry" : {
+            "type" : "string",
+            "example" : "5ee86535dc6c7c2d54327f9d"
+          },
+          "companyUserNo" : {
+            "type" : "string",
+            "example" : "10"
+          },
+          "companyName" : {
+            "type" : "string",
+            "example" : "ساکوک"
+          },
+          "email" : {
+            "type" : "string",
+            "example" : "dev.hamidbasri@gmail.com"
+          },
+          "firstName" : {
+            "type" : "string",
+            "example" : "سید حمید"
+          },
+          "lastName" : {
+            "type" : "string",
+            "example" : "بصری"
+          },
+          "mobile" : {
+            "type" : "string",
+            "example" : "09170001234"
+          },
+          "password" : {
+            "type" : "string",
+            "example" : "123123"
+          }
+        }
+      },
+      "ResRegister" : {
+        "title" : "response for register",
+        "type" : "object",
+        "properties" : {
+          "success" : {
+            "type" : "boolean"
+          }
+        }
+      },
+      "ResVerify" : {
+        "title" : "response verify",
+        "properties" : {
+          "success" : {
+            "type" : "boolean"
+          },
+          "user" : {
+            "$ref" : "#/components/schemas/ResUser"
+          },
+          "auth" : {
+            "$ref" : "#/components/schemas/ResAuth"
+          }
+        },
+        "example" : {
+          "success" : true,
+          "user" : {
+            "firstName" : "سجاد",
+            "id" : "5eef07cd16976323b811d297",
+            "lastName" : "محمدی نژاد",
+            "pic" : "http://uri.png"
+          },
+          "auth" : {
+            "token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVkQXQiOjE1OTI2OTEzOTMwODMsInVzZXIiOiI1ZWVmMDk1MTFlNzljNzE3YjUzNDY5YWYiLCJ0dGwiOiIyIiwiaWF0IjoxNTkyNzIzNzkzfQ.RZtzm3vwGYskjYCNXB8WYPc8rY1TF3Isol6EowaWmuw",
+            "refresh" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVkQXQiOjE1OTI3NzA1OTMwODMsInVzZXIiOiI1ZWVmMDk1MTFlNzljNzE3YjUzNDY5YWYiLCJ0dGwiOiIyNCIsImlhdCI6MTU5MjcyMzc5M30.n7-dDWqVqe680ktqKjTd07zt90Qck10mO_tt_Il5M2U"
+          }
+        }
+      },
+      "ReqVerify" : {
+        "title" : "request Verify",
+        "type" : "object",
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "email" : {
+            "type" : "string"
+          }
+        },
+        "example" : {
+          "code" : "1234",
+          "email" : "nimadeve@gmail.com"
+        }
+      },
+      "ReqOtp" : {
+        "title" : "request opt",
+        "type" : "object",
+        "properties" : {
+          "email" : {
+            "type" : "string"
+          }
+        },
+        "example" : {
+          "email" : "nimadeve@gmail.com"
+        }
+      },
+      "ReqLogout" : {
+        "title" : "otp request",
+        "type" : "object",
+        "properties" : {
+          "success" : {
+            "type" : "boolean"
+          },
+          "message" : {
+            "type" : "string"
+          }
+        },
+        "example" : {
+          "success" : true,
+          "message" : "todo"
+        }
+      },
+      "Company" : {
+        "title" : "companies",
+        "required" : [ "name", "title" ],
+        "type" : "object",
+        "properties" : {
+          "name" : {
+            "type" : "string"
+          },
+          "title" : {
+            "type" : "string"
+          },
+          "pic" : {
+            "type" : "string"
+          },
+          "industry" : {
+            "type" : "string"
+          },
+          "max_users" : {
+            "type" : "number"
+          },
+          "plan" : {
+            "type" : "number"
+          },
+          "users" : {
+            "type" : "array",
+            "items" : {
+              "type" : "object",
+              "properties" : {
+                "user" : {
+                  "type" : "string"
+                },
+                "positions" : {
+                  "type" : "array",
+                  "items" : {
+                    "type" : "string"
+                  }
+                }
+              }
+            }
+          },
+          "creator" : {
+            "type" : "string"
+          },
+          "contactRef" : {
+            "type" : "string"
+          },
+          "_id" : {
+            "type" : "string"
+          }
+        }
+      },
+      "CompanyTypes" : {
+        "title" : "companyTypes",
+        "required" : [ "title" ],
+        "type" : "object",
+        "properties" : {
+          "title" : {
+            "type" : "string"
+          },
+          "identifier" : {
+            "type" : "string"
+          },
+          "image" : {
+            "type" : "string"
+          },
+          "children" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          },
+          "parent" : {
+            "type" : "string"
+          },
+          "tags" : {
+            "type" : "object",
+            "properties" : {
+              "groups" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "object",
+                  "properties" : { }
+                }
+              },
+              "requirements" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "object",
+                  "properties" : { }
+                }
+              },
+              "cameFrom" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "object",
+                  "properties" : { }
+                }
+              },
+              "products" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "object",
+                  "properties" : { }
+                }
+              },
+              "filters" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "object",
+                  "properties" : { }
+                }
+              }
+            }
+          },
+          "_id" : {
+            "type" : "string"
+          },
+          "updatedAt" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "createdAt" : {
+            "type" : "string",
+            "format" : "date-time"
+          }
+        }
+      },
+      "Contact" : {
+        "title" : "contacts",
+        "type" : "object",
+        "properties" : {
+          "nameTitle" : {
+            "type" : "string"
+          },
+          "firstName" : {
+            "type" : "string"
+          },
+          "lastName" : {
+            "type" : "string"
+          },
+          "pic" : {
+            "type" : "string"
+          },
+          "accessInfo" : {
+            "type" : "object",
+            "properties" : {
+              "emails" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "object",
+                  "properties" : {
+                    "value" : {
+                      "type" : "string"
+                    },
+                    "isPrimary" : {
+                      "type" : "boolean"
+                    },
+                    "isConfirm" : {
+                      "type" : "boolean"
+                    }
+                  }
+                }
+              },
+              "phones" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "string"
+                }
+              },
+              "websites" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "object",
+                  "properties" : {
+                    "value" : {
+                      "type" : "string"
+                    }
+                  }
+                }
+              },
+              "mobiles" : {
+                "type" : "array",
+                "items" : {
+                  "required" : [ "value" ],
+                  "type" : "object",
+                  "properties" : {
+                    "value" : {
+                      "type" : "string"
+                    },
+                    "isPrimary" : {
+                      "type" : "boolean"
+                    },
+                    "isConfirm" : {
+                      "type" : "boolean"
+                    },
+                    "NotifyBySMS" : {
+                      "type" : "boolean"
+                    }
+                  }
+                }
+              },
+              "fax" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "string"
+                }
+              },
+              "address" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "object",
+                  "properties" : {
+                    "city" : {
+                      "type" : "string"
+                    },
+                    "province" : {
+                      "type" : "string"
+                    },
+                    "details" : {
+                      "type" : "string"
+                    },
+                    "postCode" : {
+                      "type" : "string"
+                    }
+                  }
+                }
+              },
+              "credits" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "object",
+                  "properties" : {
+                    "value" : {
+                      "type" : "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "accessLevel" : {
+            "type" : "object",
+            "properties" : {
+              "all" : {
+                "type" : "boolean"
+              },
+              "users" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "string"
+                }
+              },
+              "positions" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "object",
+                  "properties" : {
+                    "position" : {
+                      "type" : "string"
+                    },
+                    "excludes" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "companies" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          },
+          "customerInfo" : {
+            "type" : "object",
+            "properties" : {
+              "customerType" : {
+                "type" : "string",
+                "enum" : [ "سرنخ", "عمومی", "مشتری", "فرصت" ]
+              },
+              "customerCode" : {
+                "type" : "number"
+              },
+              "position" : {
+                "type" : "string"
+              }
+            }
+          },
+          "customerCode" : {
+            "type" : "string"
+          },
+          "logs" : {
+            "type" : "array",
+            "items" : {
+              "type" : "object",
+              "properties" : {
+                "action" : {
+                  "type" : "string"
+                },
+                "description" : {
+                  "type" : "string"
+                },
+                "date" : {
+                  "type" : "string",
+                  "format" : "date-time"
+                },
+                "user" : {
+                  "type" : "string"
+                }
+              }
+            }
+          },
+          "_id" : {
+            "type" : "string"
+          },
+          "createdAt" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "updatedAt" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "deleted" : {
+            "type" : "object",
+            "properties" : {
+              "user" : {
+                "type" : "string"
+              },
+              "date" : {
+                "type" : "string",
+                "format" : "date-time"
+              },
+              "reason" : {
+                "type" : "string"
+              }
+            }
+          },
+          "activatedAt" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "deactivatedAt" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "contactType" : {
+            "type" : "string"
+          }
+        }
+      },
+      "Position" : {
+        "title" : "positions",
+        "required" : [ "creator", "title" ],
+        "type" : "object",
+        "properties" : {
+          "positionType" : {
+            "type" : "string",
+            "enum" : [ "SuperAdmin", "User", "Admin", "Default", "SystemDefault" ]
+          },
+          "accessLimit" : {
+            "type" : "string"
+          },
+          "title" : {
+            "type" : "string"
+          },
+          "company" : {
+            "type" : "string"
+          },
+          "parent" : {
+            "type" : "string"
+          },
+          "children" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          },
+          "creator" : {
+            "type" : "string"
+          },
+          "roles" : {
+            "type" : "array",
+            "items" : {
+              "required" : [ "section" ],
+              "type" : "object",
+              "properties" : {
+                "globalView" : {
+                  "type" : "boolean"
+                },
+                "section" : {
+                  "type" : "string"
+                },
+                "showAccess" : {
+                  "type" : "object",
+                  "properties" : {
+                    "personal" : {
+                      "type" : "boolean"
+                    },
+                    "same" : {
+                      "type" : "boolean"
+                    },
+                    "sub" : {
+                      "type" : "boolean"
+                    },
+                    "head" : {
+                      "type" : "boolean"
+                    },
+                    "none" : {
+                      "type" : "boolean"
+                    },
+                    "all" : {
+                      "type" : "boolean"
+                    },
+                    "users" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "string"
+                      }
+                    },
+                    "positions" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "object",
+                        "properties" : {
+                          "position" : {
+                            "type" : "string"
+                          },
+                          "excludes" : {
+                            "type" : "array",
+                            "items" : {
+                              "type" : "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "add" : {
+                  "type" : "boolean"
+                },
+                "settings" : {
+                  "type" : "boolean"
+                },
+                "reports" : {
+                  "type" : "boolean"
+                },
+                "imports" : {
+                  "type" : "boolean"
+                },
+                "exports" : {
+                  "type" : "boolean"
+                },
+                "editAccess" : {
+                  "type" : "object",
+                  "properties" : {
+                    "personal" : {
+                      "type" : "boolean"
+                    },
+                    "same" : {
+                      "type" : "boolean"
+                    },
+                    "sub" : {
+                      "type" : "boolean"
+                    },
+                    "head" : {
+                      "type" : "boolean"
+                    },
+                    "none" : {
+                      "type" : "boolean"
+                    },
+                    "all" : {
+                      "type" : "boolean"
+                    },
+                    "users" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "string"
+                      }
+                    },
+                    "positions" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "object",
+                        "properties" : {
+                          "position" : {
+                            "type" : "string"
+                          },
+                          "excludes" : {
+                            "type" : "array",
+                            "items" : {
+                              "type" : "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "deleteAccess" : {
+                  "type" : "object",
+                  "properties" : {
+                    "personal" : {
+                      "type" : "boolean"
+                    },
+                    "same" : {
+                      "type" : "boolean"
+                    },
+                    "sub" : {
+                      "type" : "boolean"
+                    },
+                    "head" : {
+                      "type" : "boolean"
+                    },
+                    "none" : {
+                      "type" : "boolean"
+                    },
+                    "all" : {
+                      "type" : "boolean"
+                    },
+                    "users" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "string"
+                      }
+                    },
+                    "positions" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "object",
+                        "properties" : {
+                          "position" : {
+                            "type" : "string"
+                          },
+                          "excludes" : {
+                            "type" : "array",
+                            "items" : {
+                              "type" : "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "factor" : {
+            "type" : "object",
+            "properties" : {
+              "create" : {
+                "type" : "boolean"
+              },
+              "send" : {
+                "type" : "boolean"
+              }
+            }
+          },
+          "message" : {
+            "type" : "object",
+            "properties" : {
+              "single" : {
+                "type" : "boolean"
+              },
+              "group" : {
+                "type" : "boolean"
+              }
+            }
+          },
+          "defineAccess" : {
+            "type" : "boolean"
+          },
+          "priceInfoAccess" : {
+            "type" : "boolean"
+          },
+          "contactInfoAccess" : {
+            "type" : "boolean"
+          },
+          "changeTimesAccess" : {
+            "type" : "boolean"
+          },
+          "deleted" : {
+            "type" : "object",
+            "properties" : {
+              "user" : {
+                "type" : "string"
+              },
+              "date" : {
+                "type" : "string",
+                "format" : "date-time"
+              }
+            }
+          },
+          "type" : {
+            "type" : "string",
+            "enum" : [ "system", "manual" ]
+          },
+          "_id" : {
+            "type" : "string"
+          },
+          "updatedAt" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "createdAt" : {
+            "type" : "string",
+            "format" : "date-time"
+          }
+        }
+      },
+      "Product" : {
+        "title" : "products",
+        "required" : [ "title" ],
+        "type" : "object",
+        "properties" : {
+          "parent" : {
+            "type" : "string"
+          },
+          "creator" : {
+            "type" : "string"
+          },
+          "company" : {
+            "type" : "string"
+          },
+          "unitType" : {
+            "type" : "string"
+          },
+          "productCode" : {
+            "type" : "string"
+          },
+          "currencyType" : {
+            "type" : "string",
+            "enum" : [ "AED", "AFN", "ALL", "AMD", "ANG", "AOA", "ARS", "AUD", "AWG", "AZN", "BAM", "BBD", "BDT", "BGN", "BHD", "BIF", "BMD", "BND", "BOB", "BOV", "BRL", "BSD", "BTN", "BWP", "BYR", "BZD", "CAD", "CDF", "CHE", "CHF", "CHW", "CLF", "CLP", "CNY", "COP", "COU", "CRC", "CUC", "CUP", "CVE", "CZK", "DJF", "DKK", "DOP", "DZD", "EGP", "ERN", "ETB", "EUR", "FJD", "FKP", "GBP", "GEL", "GHS", "GIP", "GMD", "GNF", "GTQ", "GYD", "HKD", "HNL", "HRK", "HTG", "HUF", "IDR", "ILS", "INR", "IQD", "IRR", "IRT", "ISK", "JMD", "JOD", "JPY", "KES", "KGS", "KHR", "KMF", "KPW", "KRW", "KWD", "KYD", "KZT", "LAK", "LBP", "LKR", "LRD", "LSL", "LTL", "LVL", "LYD", "MAD", "MDL", "MGA", "MKD", "MMK", "MNT", "MOP", "MRO", "MUR", "MVR", "MWK", "MXN", "MXV", "MYR", "MZN", "NAD", "NGN", "NIO", "NOK", "NPR", "NZD", "OMR", "PAB", "PEN", "PGK", "PHP", "PKR", "PLN", "PYG", "QAR", "RON", "RSD", "RUB", "RWF", "SAR", "SBD", "SCR", "SDG", "SEK", "SGD", "SHP", "SLL", "SOS", "SRD", "SSP", "STD", "SYP", "SZL", "THB", "TJS", "TMT", "TND", "TOP", "TRY", "TTD", "TWD", "TZS", "UAH", "UGX", "USD", "USN", "USS", "UYI", "UYU", "UZS", "VEF", "VND", "VUV", "WST", "XAF", "XAG", "XAU", "XBA", "XBB", "XBC", "XBD", "XCD", "XDR", "XFU", "XOF", "XPD", "XPF", "XPT", "XTS", "XXX", "YER", "ZAR", "ZMW" ]
+          },
+          "title" : {
+            "type" : "string"
+          },
+          "purchasePrice" : {
+            "type" : "number"
+          },
+          "unitPrice" : {
+            "type" : "number"
+          },
+          "description" : {
+            "type" : "string"
+          },
+          "accessLevel" : {
+            "type" : "object",
+            "properties" : {
+              "all" : {
+                "type" : "boolean"
+              },
+              "users" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "string"
+                }
+              },
+              "positions" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "object",
+                  "properties" : {
+                    "position" : {
+                      "type" : "string"
+                    },
+                    "excludes" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "children" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          },
+          "level" : {
+            "type" : "number"
+          },
+          "lifeTime" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "deleted" : {
+            "type" : "object",
+            "properties" : {
+              "user" : {
+                "type" : "string"
+              },
+              "date" : {
+                "type" : "string",
+                "format" : "date-time"
+              },
+              "reason" : {
+                "type" : "string"
+              }
+            }
+          },
+          "disabled" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "createdAt" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "updatedAt" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "_id" : {
+            "type" : "string"
+          }
+        }
+      },
+      "Reason" : {
+        "title" : "reasons",
+        "type" : "object",
+        "properties" : {
+          "reasonTypes" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          },
+          "sections" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          },
+          "company" : {
+            "type" : "string"
+          },
+          "title" : {
+            "type" : "string"
+          },
+          "communicationWay" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          },
+          "accessLevel" : {
+            "type" : "object",
+            "properties" : {
+              "all" : {
+                "type" : "boolean"
+              },
+              "users" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "string"
+                }
+              },
+              "positions" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "object",
+                  "properties" : {
+                    "position" : {
+                      "type" : "string"
+                    },
+                    "excludes" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "order" : {
+            "type" : "number"
+          },
+          "creator" : {
+            "type" : "string"
+          },
+          "deletedAt" : {
+            "type" : "object",
+            "properties" : {
+              "date" : {
+                "type" : "string",
+                "format" : "date-time"
+              },
+              "reason" : {
+                "type" : "string"
+              },
+              "by" : {
+                "type" : "string"
+              }
+            }
+          },
+          "_id" : {
+            "type" : "string"
+          },
+          "updatedAt" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "createdAt" : {
+            "type" : "string",
+            "format" : "date-time"
+          }
+        }
+      },
+      "Tags" : {
+        "title" : "tags",
+        "required" : [ "title" ],
+        "type" : "object",
+        "properties" : {
+          "parent" : {
+            "type" : "string"
+          },
+          "creator" : {
+            "type" : "string"
+          },
+          "company" : {
+            "type" : "string"
+          },
+          "title" : {
+            "type" : "string"
+          },
+          "children" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          },
+          "level" : {
+            "type" : "number"
+          },
+          "order" : {
+            "type" : "number"
+          },
+          "deleted" : {
+            "type" : "object",
+            "properties" : {
+              "user" : {
+                "type" : "string"
+              },
+              "date" : {
+                "type" : "string",
+                "format" : "date-time"
+              },
+              "reason" : {
+                "type" : "string"
+              }
+            }
+          },
+          "selectable" : {
+            "type" : "boolean"
+          },
+          "draggable" : {
+            "type" : "boolean"
+          },
+          "disabled" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "accessLevel" : {
+            "type" : "object",
+            "properties" : {
+              "all" : {
+                "type" : "boolean"
+              },
+              "users" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "string"
+                }
+              },
+              "positions" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "object",
+                  "properties" : {
+                    "position" : {
+                      "type" : "string"
+                    },
+                    "excludes" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "createdAt" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "updated" : {
+            "type" : "object",
+            "properties" : {
+              "user" : {
+                "type" : "string"
+              },
+              "date" : {
+                "type" : "string",
+                "format" : "date-time"
+              }
+            }
+          },
+          "active" : {
+            "type" : "object",
+            "properties" : {
+              "status" : {
+                "type" : "boolean"
+              },
+              "date" : {
+                "type" : "string",
+                "format" : "date-time"
+              },
+              "user" : {
+                "type" : "string"
+              }
+            }
+          },
+          "_id" : {
+            "type" : "string"
+          },
+          "type" : {
+            "type" : "string"
+          }
+        }
+      },
+      "User" : {
+        "title" : "users",
+        "required" : [ "password" ],
+        "type" : "object",
+        "properties" : {
+          "username" : {
+            "type" : "string"
+          },
+          "password" : {
+            "type" : "string"
+          },
+          "emails" : {
+            "type" : "array",
+            "items" : {
+              "required" : [ "value" ],
+              "type" : "object",
+              "properties" : {
+                "value" : {
+                  "type" : "string"
+                },
+                "isPrimary" : {
+                  "type" : "boolean"
+                },
+                "isConfirm" : {
+                  "type" : "boolean"
+                }
+              }
+            }
+          },
+          "phones" : {
+            "type" : "array",
+            "items" : {
+              "required" : [ "value" ],
+              "type" : "object",
+              "properties" : {
+                "value" : {
+                  "type" : "string"
+                },
+                "isPrimary" : {
+                  "type" : "boolean"
+                },
+                "phone_type" : {
+                  "type" : "string"
+                },
+                "isConfirm" : {
+                  "type" : "boolean"
+                }
+              }
+            }
+          },
+          "lockUntil" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "code_log" : {
+            "type" : "object",
+            "properties" : { }
+          },
+          "login_logs" : {
+            "type" : "object",
+            "properties" : {
+              "last_login_date" : {
+                "type" : "string",
+                "format" : "date-time"
+              },
+              "login_attempt_no" : {
+                "type" : "number"
+              }
+            }
+          },
+          "forgot_logs" : {
+            "type" : "object",
+            "properties" : {
+              "forgot_attempt_no" : {
+                "type" : "number"
+              },
+              "last_forgot_attempt_date" : {
+                "type" : "string",
+                "format" : "date-time"
+              }
+            }
+          },
+          "_id" : {
+            "type" : "string"
+          },
+          "createdAt" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "updatedAt" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "deleted" : {
+            "type" : "object",
+            "properties" : {
+              "user" : {
+                "type" : "string"
+              },
+              "date" : {
+                "type" : "string",
+                "format" : "date-time"
+              },
+              "reason" : {
+                "type" : "string"
+              }
+            }
+          },
+          "activatedAt" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "deactivatedAt" : {
+            "type" : "string",
+            "format" : "date-time"
+          }
+        }
+      }
+    }
+  }
+}
