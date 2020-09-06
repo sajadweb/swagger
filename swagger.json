@@ -688,20 +688,6 @@
         }, {
           "$ref" : "#/components/parameters/companyCardIdHeader"
         } ],
-        "requestBody" : {
-          "content" : {
-            "aplication/json" : {
-              "schema" : {
-                "type" : "object",
-                "properties" : {
-                  "ids" : {
-                    "type" : "string"
-                  }
-                }
-              }
-            }
-          }
-        },
         "responses" : {
           "200" : {
             "description" : "Ok",
@@ -851,24 +837,6 @@
         }, {
           "$ref" : "#/components/parameters/companyIdParam"
         } ],
-        "requestBody" : {
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "type" : "object",
-                "properties" : {
-                  "productIds" : {
-                    "type" : "array",
-                    "items" : {
-                      "type" : "string"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "description" : "product ids"
-        },
         "responses" : {
           "200" : {
             "description" : "Response",
