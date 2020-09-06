@@ -758,6 +758,9 @@
       "get" : {
         "tags" : [ "Products" ],
         "description" : "Get Products",
+        "security" : [ {
+          "bearerAuth" : [ ]
+        } ],
         "parameters" : [ {
           "$ref" : "#/components/parameters/userHeader"
         }, {
@@ -795,6 +798,9 @@
       "post" : {
         "tags" : [ "Products" ],
         "description" : "Post Products",
+        "security" : [ {
+          "bearerAuth" : [ ]
+        } ],
         "parameters" : [ {
           "$ref" : "#/components/parameters/userHeader"
         }, {
@@ -837,6 +843,9 @@
       "delete" : {
         "tags" : [ "Products" ],
         "description" : "Delete Products",
+        "security" : [ {
+          "bearerAuth" : [ ]
+        } ],
         "parameters" : [ {
           "$ref" : "#/components/parameters/userHeader"
         }, {
@@ -884,6 +893,9 @@
       "put" : {
         "tags" : [ "Products" ],
         "description" : "Put Products",
+        "security" : [ {
+          "bearerAuth" : [ ]
+        } ],
         "parameters" : [ {
           "$ref" : "#/components/parameters/productId"
         }, {
@@ -926,6 +938,9 @@
       "delete" : {
         "tags" : [ "Products" ],
         "description" : "Delete Products",
+        "security" : [ {
+          "bearerAuth" : [ ]
+        } ],
         "parameters" : [ {
           "$ref" : "#/components/parameters/productId"
         }, {
@@ -1430,6 +1445,13 @@
     }
   },
   "components" : {
+    "securitySchemes" : {
+      "bearerAuth" : {
+        "type" : "http",
+        "scheme" : "bearer",
+        "bearerFormat" : "JWT"
+      }
+    },
     "parameters" : {
       "contact" : {
         "name" : "contact",
