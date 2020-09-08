@@ -24,7 +24,7 @@
     "version" : "1.0.0",
     "title" : "Sakok API",
     "contact" : {
-      "email" : "info@sakok.com"
+      "email" : "you@your-company.com"
     },
     "license" : {
       "name" : "Apache 2.0",
@@ -688,6 +688,20 @@
         }, {
           "$ref" : "#/components/parameters/companyCardIdHeader"
         } ],
+        "requestBody" : {
+          "content" : {
+            "aplication/json" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "ids" : {
+                    "type" : "string"
+                  }
+                }
+              }
+            }
+          }
+        },
         "responses" : {
           "200" : {
             "description" : "Ok",
@@ -744,9 +758,6 @@
       "get" : {
         "tags" : [ "Products" ],
         "description" : "Get Products",
-        "security" : [ {
-          "bearerAuth" : [ ]
-        } ],
         "parameters" : [ {
           "$ref" : "#/components/parameters/userHeader"
         }, {
@@ -784,9 +795,6 @@
       "post" : {
         "tags" : [ "Products" ],
         "description" : "Post Products",
-        "security" : [ {
-          "bearerAuth" : [ ]
-        } ],
         "parameters" : [ {
           "$ref" : "#/components/parameters/userHeader"
         }, {
@@ -829,14 +837,29 @@
       "delete" : {
         "tags" : [ "Products" ],
         "description" : "Delete Products",
-        "security" : [ {
-          "bearerAuth" : [ ]
-        } ],
         "parameters" : [ {
           "$ref" : "#/components/parameters/userHeader"
         }, {
           "$ref" : "#/components/parameters/companyIdParam"
         } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "productIds" : {
+                    "type" : "array",
+                    "items" : {
+                      "type" : "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "description" : "product ids"
+        },
         "responses" : {
           "200" : {
             "description" : "Response",
@@ -861,9 +884,6 @@
       "put" : {
         "tags" : [ "Products" ],
         "description" : "Put Products",
-        "security" : [ {
-          "bearerAuth" : [ ]
-        } ],
         "parameters" : [ {
           "$ref" : "#/components/parameters/productId"
         }, {
@@ -906,9 +926,6 @@
       "delete" : {
         "tags" : [ "Products" ],
         "description" : "Delete Products",
-        "security" : [ {
-          "bearerAuth" : [ ]
-        } ],
         "parameters" : [ {
           "$ref" : "#/components/parameters/productId"
         }, {
@@ -1410,16 +1427,106 @@
           }
         }
       }
+    },
+    "/company/{companyId}/notes" : {
+      "get" : {
+        "tags" : [ "Notes" ],
+        "summary" : "get all notes of a company",
+        "operationId" : "notesGet",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/companyIdParam"
+        }, {
+          "$ref" : "#/components/parameters/pageParam"
+        }, {
+          "$ref" : "#/components/parameters/limitParam"
+        }, {
+          "$ref" : "#/components/parameters/filters"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Response",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getNotes"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "unauthorized"
+          },
+          "500" : {
+            "description" : "internal server error"
+          },
+          "502" : {
+            "description" : "bad gateway"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Notes" ],
+        "summary" : "delete all comments of notes for a given companyId",
+        "operationId" : "notesCommentsDelete",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/companyIdParam"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Response",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getFields"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch" : {
+        "tags" : [ "Notes" ],
+        "summary" : "delete all comments of notes for a given companyId",
+        "operationId" : "notePatch",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/companyIdParam"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Response",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getFields"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Notes" ],
+        "summary" : "delete all comments of notes for a given companyId",
+        "operationId" : "notePost",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/companyIdParam"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Response",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getFields"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components" : {
-    "securitySchemes" : {
-      "bearerAuth" : {
-        "type" : "http",
-        "scheme" : "bearer",
-        "bearerFormat" : "JWT"
-      }
-    },
     "parameters" : {
       "contact" : {
         "name" : "contact",
@@ -3145,6 +3252,61 @@
           "deactivatedAt" : {
             "type" : "string",
             "format" : "date-time"
+          }
+        }
+      },
+      "getNotes" : {
+        "type" : "object",
+        "properties" : {
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          },
+          "totalDocs" : {
+            "type" : "number"
+          },
+          "limit" : {
+            "type" : "number"
+          },
+          "totalPages" : {
+            "type" : "number"
+          },
+          "page" : {
+            "type" : "number"
+          },
+          "pagingCounter" : {
+            "type" : "number"
+          },
+          "hasPrevPage" : {
+            "type" : "boolean"
+          },
+          "hasNextPage" : {
+            "type" : "boolean"
+          },
+          "prevPage" : {
+            "type" : "object"
+          },
+          "nextPage" : {
+            "type" : "object"
+          },
+          "reports" : {
+            "type" : "object",
+            "properties" : {
+              "total" : {
+                "type" : "number"
+              },
+              "connectedArchive" : {
+                "type" : "number"
+              },
+              "follower" : {
+                "type" : "number"
+              }
+            }
+          },
+          "success" : {
+            "type" : "boolean"
           }
         }
       }
