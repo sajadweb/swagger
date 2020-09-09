@@ -76,6 +76,9 @@
       "get" : {
         "tags" : [ "Tasks" ],
         "description" : "This Method Trying to Get All Tasks",
+        "security" : [ {
+          "bearerAuth" : [ ]
+        } ],
         "parameters" : [ {
           "$ref" : "#/components/parameters/companyIdParam"
         }, {
