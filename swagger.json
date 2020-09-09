@@ -72,6 +72,254 @@
     "description" : "<b style=\"color:orange\">pending</b>"
   } ],
   "paths" : {
+    "/company/{companyId}/transactions" : {
+      "get" : {
+        "tags" : [ "Transactions" ],
+        "description" : "This Method Trying to Get All Transactions",
+        "security" : [ {
+          "bearerAuth" : [ ]
+        } ],
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/companyIdParam"
+        }, {
+          "$ref" : "#/components/parameters/pageParam"
+        }, {
+          "$ref" : "#/components/parameters/stateParam"
+        }, {
+          "$ref" : "#/components/parameters/limitParam"
+        }, {
+          "$ref" : "#/components/parameters/column"
+        }, {
+          "$ref" : "#/components/parameters/userHeader"
+        }, {
+          "$ref" : "#/components/parameters/select"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Ok",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "items" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "string"
+                      }
+                    },
+                    "success" : {
+                      "type" : "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "internal server error"
+          },
+          "502" : {
+            "description" : "bad gateway"
+          },
+          "401" : {
+            "description" : "unauthorized"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Transactions" ],
+        "description" : "This Method Trying to delete transactions",
+        "security" : [ {
+          "bearerAuth" : [ ]
+        } ],
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/companyIdParam"
+        }, {
+          "$ref" : "#/components/parameters/companyCardIdHeader"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "aplication/json" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "userId" : {
+                    "type" : "string"
+                  },
+                  "reason" : {
+                    "type" : "string"
+                  },
+                  "transactions" : {
+                    "type" : "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Ok",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/success"
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "internal server error"
+          },
+          "502" : {
+            "description" : "bad gateway"
+          },
+          "401" : {
+            "description" : "unauthorized"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Transactions" ],
+        "description" : "This Method Trying to create Transactions",
+        "security" : [ {
+          "bearerAuth" : [ ]
+        } ],
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/companyIdParam"
+        }, {
+          "$ref" : "#/components/parameters/userHeader"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "contacts" : {
+                    "type" : "string"
+                  },
+                  "owner" : {
+                    "type" : "string"
+                  },
+                  "products" : {
+                    "type" : "string"
+                  },
+                  "cameFrom" : {
+                    "type" : "string"
+                  },
+                  "creator" : {
+                    "type" : "string"
+                  },
+                  "description" : {
+                    "type" : "string"
+                  },
+                  "mentions" : {
+                    "type" : "string"
+                  },
+                  "nextCheck" : {
+                    "type" : "string"
+                  },
+                  "hashtag" : {
+                    "type" : "string"
+                  },
+                  "accessLevel" : {
+                    "type" : "string"
+                  },
+                  "state" : {
+                    "type" : "string"
+                  },
+                  "pin" : {
+                    "type" : "string"
+                  },
+                  "vip" : {
+                    "type" : "string"
+                  },
+                  "about" : {
+                    "type" : "string"
+                  },
+                  "registerAt" : {
+                    "type" : "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Ok",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "items" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "string"
+                      }
+                    },
+                    "success" : {
+                      "type" : "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "internal server error"
+          },
+          "502" : {
+            "description" : "bad gateway"
+          }
+        }
+      },
+      "patch" : {
+        "tags" : [ "Tasks" ],
+        "description" : "This Method Trying to patch Task",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/companyIdParam"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "aplication/json" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "userId" : {
+                    "type" : "string"
+                  },
+                  "recovery" : {
+                    "type" : "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Ok",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/success"
+                }
+              }
+            }
+          },
+          "502" : {
+            "description" : "bad gateway"
+          },
+          "401" : {
+            "description" : "unauthorized"
+          }
+        }
+      }
+    },
     "/company/{companyId}/tasks" : {
       "get" : {
         "tags" : [ "Tasks" ],
@@ -1538,6 +1786,33 @@
       }
     },
     "parameters" : {
+      "companyCardIdHeader" : {
+        "name" : "companyCardId",
+        "in" : "header",
+        "description" : "Id of company card",
+        "required" : true,
+        "schema" : {
+          "type" : "string"
+        }
+      },
+      "companyIdParam" : {
+        "name" : "companyId",
+        "in" : "path",
+        "description" : "company id",
+        "required" : true,
+        "schema" : {
+          "type" : "string"
+        }
+      },
+      "column" : {
+        "name" : "column",
+        "in" : "query",
+        "description" : "column",
+        "required" : false,
+        "schema" : {
+          "type" : "string"
+        }
+      },
       "contact" : {
         "name" : "contact",
         "in" : "query",
@@ -1637,6 +1912,15 @@
           "type" : "string"
         }
       },
+      "select" : {
+        "name" : "select",
+        "in" : "query",
+        "description" : "select",
+        "required" : false,
+        "schema" : {
+          "type" : "string"
+        }
+      },
       "stateParam" : {
         "name" : "state",
         "in" : "query",
@@ -1660,24 +1944,6 @@
         "in" : "query",
         "description" : "product list",
         "required" : false,
-        "schema" : {
-          "type" : "string"
-        }
-      },
-      "companyCardIdHeader" : {
-        "name" : "companyCardId",
-        "in" : "header",
-        "description" : "Id of company card",
-        "required" : true,
-        "schema" : {
-          "type" : "string"
-        }
-      },
-      "companyIdParam" : {
-        "name" : "companyId",
-        "in" : "path",
-        "description" : "company id",
-        "required" : true,
         "schema" : {
           "type" : "string"
         }
